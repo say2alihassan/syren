@@ -8,6 +8,15 @@ export const metadata = {
     "SYREN is a personal branding agency helping doctors, dentists, aesthetic practitioners and healthcare experts become recognised leaders in their industry.",
 };
 
+// Without this the page renders at desktop width on phones and scales down,
+// so none of the mobile breakpoints fire. This is what makes the site mobile-
+// responsive.
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
