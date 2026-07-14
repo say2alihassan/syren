@@ -77,20 +77,22 @@ function Reel({ src, poster, tag, title }) {
 
   return (
     <figure className="reel" onMouseEnter={unmute} onMouseLeave={mute} onClick={toggleSound}>
-      <video
-        ref={ref}
-        className="reel-video"
-        src={src}
-        poster={poster}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        controls={reduced}
-      />
-      <span className="reel-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-      </span>
+      <div className="reel-media">
+        <video
+          ref={ref}
+          className="reel-video"
+          src={src}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={reduced}
+        />
+        <span className="reel-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+        </span>
+      </div>
       <figcaption className="reel-cap">
         <span className="reel-tag">{tag}</span>
         <span className="reel-title">{title}</span>
@@ -107,10 +109,16 @@ function ResultsCard() {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img className="reel-video" src="/reels/results-63k.jpg" alt="TikTok analytics: 0 to 63,466 followers in 3 months" />
-      <span className="reel-play reel-play--out" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H9M17 7V15" /></svg>
-      </span>
+      <div className="reel-media">
+        <img className="reel-video" src="/reels/results-63k.jpg" alt="TikTok analytics: 0 to 63,466 followers in 3 months" />
+        <span className="reel-play reel-play--out" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H9M17 7V15" /></svg>
+        </span>
+      </div>
+      <figcaption className="reel-cap">
+        <span className="reel-tag">Proof</span>
+        <span className="reel-title">0 → 63K followers in 3 months. See it on Instagram.</span>
+      </figcaption>
     </a>
   );
 }

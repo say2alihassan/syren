@@ -83,7 +83,7 @@ export default function Home() {
         </Reveal>
 
         <Reveal className="service-row">
-          <div className="service-index">01</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Content strategy &amp; production</h3>
             <p className="lede">
@@ -94,7 +94,7 @@ export default function Home() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">02</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Personal brand development</h3>
             <p className="lede">
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">03</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Brand &amp; commercial partnerships</h3>
             <p className="lede">
@@ -116,7 +116,7 @@ export default function Home() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">04</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Media &amp; PR placement</h3>
             <p className="lede">
@@ -148,6 +148,14 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <Reveal as="section" className="wrap quote">
+        <span className="quote-mark">&ldquo;</span>
+        <blockquote>
+          Become known for what you do <em>best</em> — the go-to voice in your field.
+        </blockquote>
+        <cite>Eloise Bratt, Founder &amp; CEO, SYREN</cite>
+      </Reveal>
 
       <Reveal as="section" className="wrap cta-band">
         <span className="eyebrow">Start here</span>

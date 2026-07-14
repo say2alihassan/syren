@@ -24,7 +24,7 @@ export default function Services() {
 
       <section className="wrap pt-80">
         <Reveal className="service-row">
-          <div className="service-index">01</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Content strategy &amp; production</h3>
             <p className="lede">
@@ -36,7 +36,7 @@ export default function Services() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">02</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Personal brand development</h3>
             <p className="lede">
@@ -48,7 +48,7 @@ export default function Services() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">03</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Brand &amp; commercial partnerships</h3>
             <p className="lede">
@@ -60,7 +60,7 @@ export default function Services() {
           </div>
         </Reveal>
         <Reveal className="service-row">
-          <div className="service-index">04</div>
+          <div className="service-marker" aria-hidden="true" />
           <div>
             <h3>Media &amp; PR placement</h3>
             <p className="lede">

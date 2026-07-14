@@ -39,8 +39,8 @@ export default function Work() {
       <Reveal as="section" className="wrap quote">
         <span className="quote-mark">&ldquo;</span>
         <blockquote>
-          We help experts turn their knowledge into influence, their audience into opportunity, and
-          their personal brand into a business asset.
+          We turn clinical knowledge into <em>influence</em>, an audience into
+          opportunity, and a personal brand into a <em>business asset</em>.
         </blockquote>
         <cite>Eloise Bratt, Founder &amp; CEO, SYREN</cite>
       </Reveal>

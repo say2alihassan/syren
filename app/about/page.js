@@ -45,6 +45,15 @@ export default function About() {
         </Reveal>
       </section>
 
+      <Reveal as="section" className="wrap quote">
+        <span className="quote-mark">&ldquo;</span>
+        <blockquote>
+          I&apos;m passionate about helping ambitious experts become known for what
+          they do <em>best</em>.
+        </blockquote>
+        <cite>Eloise Bratt, Founder &amp; CEO, SYREN</cite>
+      </Reveal>
+
       <Reveal as="section" className="wrap split">
         <div className="col-label">
           <span className="eyebrow">Track record</span>
@@ -75,28 +84,28 @@ export default function About() {
         </Reveal>
         <div className="process-list">
           <Reveal className="process-item">
-            <div className="process-num">01</div>
+            <div className="service-marker" aria-hidden="true" />
             <div>
               <h4>Social media strategy</h4>
               <p>Platform-native thinking across TikTok, Instagram, LinkedIn and YouTube, built around what makes clinical audiences stop, trust and engage.</p>
             </div>
           </Reveal>
           <Reveal className="process-item">
-            <div className="process-num">02</div>
+            <div className="service-marker" aria-hidden="true" />
             <div>
               <h4>Content production</h4>
               <p>High-performing content produced to a standard that matches the expertise behind it.</p>
             </div>
           </Reveal>
           <Reveal className="process-item">
-            <div className="process-num">03</div>
+            <div className="service-marker" aria-hidden="true" />
             <div>
               <h4>Personal branding</h4>
               <p>Positioning that turns a clinician&apos;s knowledge into a recognisable, trusted name in their field.</p>
             </div>
           </Reveal>
           <Reveal className="process-item">
-            <div className="process-num">04</div>
+            <div className="service-marker" aria-hidden="true" />
             <div>
               <h4>Creator partnerships</h4>
               <p>Relationships across the healthcare creator space that open doors to brand deals and media opportunities.</p>
