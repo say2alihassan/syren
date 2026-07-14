@@ -1,4 +1,6 @@
 "use client";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 
 // Next.js App Router renders template.js fresh on every navigation (unlike
@@ -10,6 +12,15 @@ const wrapStyle = { willChange: "transform, opacity" };
 
 export default function Template({ children }) {
   const reduce = useReducedMotion();
+  const pathname = usePathname();
+
+  // On every route change, snap the smoothed scroll back to the top so the new
+  // page's enter animation starts from its hero (Lenis holds its own position).
+  useEffect(() => {
+    const lenis = window.__lenis;
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <motion.div
