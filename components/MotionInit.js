@@ -34,25 +34,41 @@ export default function MotionInit() {
       return () => cleanupHero();
     }
 
+    // Headline reveal — run IMMEDIATELY and independently of the ScrollTrigger
+    // dynamic import. Previously this lived inside import("gsap/ScrollTrigger")
+    // .then(), so on iOS Safari (where that import can race/fail) the split
+    // words were left stuck at yPercent:110 = permanently invisible, and the
+    // hero looked empty. It never needed ScrollTrigger. It's also wrapped in
+    // try/catch that restores plain, visible text if anything throws, so the
+    // headline can never disappear.
+    document.querySelectorAll("[data-split]").forEach((el) => {
+      if (el.dataset.split === "done") return;
+      const text = el.textContent;
+      try {
+        el.innerHTML = text
+          .split(" ")
+          .map(
+            (w) =>
+              `<span class="split-char" style="overflow:hidden;display:inline-block;"><span style="display:inline-block;">${w}&nbsp;</span></span>`
+          )
+          .join("");
+        el.dataset.split = "done";
+        const inner = el.querySelectorAll(".split-char > span");
+        gsap.fromTo(
+          inner,
+          { yPercent: 110 },
+          { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.035, delay: 0.1 }
+        );
+      } catch (err) {
+        el.textContent = text; // fall back to plain, fully-visible text
+        el.dataset.split = "done";
+      }
+    });
+
     import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
       gsap.registerPlugin(ScrollTrigger);
 
       ctx.add(() => {
-        document.querySelectorAll("[data-split]").forEach((el) => {
-          if (el.dataset.split === "done") return;
-          const text = el.textContent;
-          el.innerHTML = text
-            .split(" ")
-            .map(
-              (w) =>
-                `<span class="split-char" style="overflow:hidden;display:inline-block;"><span style="display:inline-block;">${w}&nbsp;</span></span>`
-            )
-            .join("");
-          el.dataset.split = "done";
-          const inner = el.querySelectorAll(".split-char > span");
-          gsap.fromTo(inner, { yPercent: 110 }, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.035, delay: 0.1 });
-        });
-
         document.querySelectorAll("[data-count]").forEach((el) => {
           const target = el.textContent.trim();
           const num = parseFloat(target.replace(/[^0-9.]/g, ""));

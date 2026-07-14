@@ -1,17 +1,20 @@
 "use client";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "motion/react";
 
 // Next.js App Router renders template.js fresh on every navigation (unlike
 // layout.js, which persists), so it's the natural seam for route enter
-// animations. Each page fades and eases up into place as you move between
-// routes, on top of the in-page GSAP scroll reveals. Collapses to an instant,
-// static render under prefers-reduced-motion.
-const wrapStyle = { willChange: "transform, opacity" };
-
+// animations.
+//
+// This deliberately uses a pure CSS animation (see .page-enter in globals.css)
+// rather than a JS-driven motion.div. The old motion.div started the whole page
+// at opacity:0 and relied on JS to animate it back to 1 — on iOS Safari, if that
+// animation didn't run (hydration race / Motion hiccup), the entire page body
+// stayed invisible and only the Nav + Footer (rendered outside {children})
+// showed. A CSS keyframe is driven by the browser itself, so the content is
+// guaranteed to end fully visible even if no JS runs. Respects reduced-motion
+// via the @media rule on the class.
 export default function Template({ children }) {
-  const reduce = useReducedMotion();
   const pathname = usePathname();
 
   // On every route change, snap the smoothed scroll back to the top so the new
@@ -22,14 +25,10 @@ export default function Template({ children }) {
     else window.scrollTo(0, 0);
   }, [pathname]);
 
+  // key forces the element (and its CSS animation) to re-run on each route.
   return (
-    <motion.div
-      style={wrapStyle}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={reduce ? { duration: 0 } : { duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <div className="page-enter" key={pathname}>
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -542,11 +542,21 @@ footer{border-top:1px solid var(--ink-line);padding:64px 0 40px;}
 .form-note.visible{opacity:1;}
 
 /* ---------- reveal / motion base states ---------- */
-/* Scroll reveals are handled by <Reveal> (Motion whileInView); it sets its own
-   hidden state inline, so no [data-reveal] base transform is needed here. */
+/* Scroll reveals are handled by <Reveal>; it sets its own hidden state inline,
+   so no [data-reveal] base transform is needed here. */
 .split-char{display:inline-block;will-change:transform;}
 
+/* Route-enter animation (see app/template.js). Pure CSS so the page content is
+   ALWAYS visible at the end even if no JS runs — the animation only adds a soft
+   fade-up. This is what prevents the iOS "only header + footer show" bug. */
+.page-enter{animation:pageEnter .55s cubic-bezier(.22,1,.36,1) both;}
+@keyframes pageEnter{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:none;}
+}
+
 @media (prefers-reduced-motion:reduce){
+  .page-enter{animation:none;}
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
 }
 
